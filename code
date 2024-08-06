@@ -1,0 +1,202 @@
+//Run the following commands to set up your React project:
+npx create-react-app my-portfolio
+cd my-portfolio
+npm start
+
+
+//Navbar.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';  // CSS file for styling
+
+const Navbar = () => (
+  <nav className="navbar">
+    <ul>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/about">About Me</Link></li>
+      <li><Link to="/projects">Projects</Link></li>
+    </ul>
+  </nav>
+);
+
+export default Navbar;
+
+
+//AboutMe.js
+import React from 'react';
+import './AboutMe.css';  // CSS file for styling
+
+const AboutMe = () => (
+  <section className="about-me">
+    <h1>About Me</h1>
+    <p><strong>Name:</strong> Kanishka Gurjar</p>
+    <p><strong>Education:</strong> 
+      <br /> Class 10th - Maheshwari Public School (90%)
+      <br /> Class 12th - Bright India School, Ajmer (80%)
+      <br /> B.Tech CSE - Galgotias University
+    </p>
+    <p><strong>Skills:</strong> C++, Java, Python, HTML, CSS, JavaScript, React, Git</p>
+  </section>
+);
+
+export default AboutMe;
+
+
+//Project.js
+import React from 'react';
+import './Project.css';  //CSS file for styling
+
+const Project = ({ title, description, image }) => (
+  <div className="project">
+    <img src={image} alt={title} />
+    <h2>{title}</h2>
+    <p>{description}</p>
+  </div>
+);
+
+export default Project;
+
+
+//Projects.js
+// src/components/Projects.js
+import React from 'react';
+import Project from './Project';
+import './Projects.css';  
+
+const projects = [
+  {
+    title: 'Face Recognition Attendance System',
+    description: 'An automated system for taking attendance using face recognition.',
+  },
+  {
+    title: 'Traffic Control IoT-Based System',
+    description: 'An IoT-based system for controlling and managing traffic.',
+  },
+  {
+    title: 'Online Book Store',
+    description: 'A platform to buy and sell books online.',
+  }
+];
+
+const Projects = () => (
+  <section className="projects">
+    <h1>Projects</h1>
+    {projects.map((project, index) => (
+      <Project
+        key={index}
+        title={project.title}
+        description={project.description}
+        image={project.image}
+      />
+    ))}
+  </section>
+);
+
+export default Projects;
+
+
+//Footer.js
+import React from 'react';
+import './Footer.css'; 
+
+const Footer = () => (
+  <footer className="footer">
+    <p>© 2024 Kanishka Gurjar. All rights reserved.</p>
+  </footer>
+);
+
+export default Footer;
+
+
+
+
+//app.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import AboutMe from './components/AboutMe';
+import Projects from './components/Projects';
+import Footer from './components/Footer';
+import './App.css';  
+
+const App = () => (
+  <Router>
+    <Navbar />
+    <main>
+      <Routes>
+        <Route path="/" element={<AboutMe />} />
+        <Route path="/about" element={<AboutMe />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
+    </main>
+    <Footer />
+  </Router>
+);
+
+export default App;
+
+
+
+//app.css -- styling
+/* src/App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
+
+main {
+  padding: 20px;
+}
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+}
+
+.projects, .about-me {
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  .navbar li {
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+
+
+  
